@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>Filters basics</title>
+    </head>
+
+    <body>
+	<!-- Displaying various functions -->
+	<li v-for="product in products 
+		   | filterBy 'electronics' in 'category'
+		   | orderBy 'name' -1">
+	    {{ product.name | capitalize }} - {{ product.price | currency }}
+	</li>
+	<p> Applying custom filters: </p>
+	<!-- Custom filters -->
+	<li v-for="product in products">
+	    {{ product.name | capitalize }} - {{ product.price | discount 25 | currency "ksh. "}}
+	</li>
+	
+    	<script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.js"></script>
+	<script>
+	 Vue.filter('discount', function(value, discount){
+	     return value * (discount / 100)
+	 })
+	 new Vue({
+	     el: 'body',
+	     data:{
+		 products: [
+		     {name: 'microphone',  price: 25, category: 'electronics'},
+		     {name: 'laptop case', price: 15, category: 'accessories'},
+		     {name: 'screen cleaner', price: 17, category: 'accessories'},
+		     {name: 'laptop charger', price: 70, category: 'electronics'},
+		     {name: 'mouse', price: 40, category: 'electronics'},
+		     {name: 'earphones', price: 20, category: 'electronics'},
+		     {name: 'monitor', price: 120, category: 'electronics'}
+		 ]
+	     },
+	     filters:{
+		 discount: function(value, discount){q
+		     return value * (discount/100);
+		 }
+	     }
+	 })
+	</script>
+    </body>
+</html>  

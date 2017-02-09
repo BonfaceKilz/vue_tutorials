@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>VueJs Basics</title>
+    </head>
+    <body>
+	<!-- Creating a vies instance -->
+	<div id="vue-instance">
+	    Creating a vue instance<br/>
+	    Enter a greeting: <input type="text" v-model="name">
+	    <button @click="sayHello">Hey there!</button>
+	</div>
+
+	<!-- Showing the usage of v-if -->
+	<div id="app2">
+	    Showing the usage of v-if <br/>
+	    <div v-if="isLoggedIn">
+		Welcome stranger!
+		<button @click="login" type="submit">Logout</button>
+	    </div>
+	    <div v-else>
+		<input type="text" placeholder="username">
+		<input type="password" placeholder="password">
+		<button @click="login" type="submit">Login</button>
+	    </div>
+	</div>
+
+	<!-- Showing the usage of v-show -->
+	<div id="app3">
+	    <div v-show="isLoggedIn">
+		Welcome stranger!
+		<button @click="login" type="submit">Logout</button>
+	    </div>
+	    <div v-else>
+		<input type="text" placeholder="username">
+		<input type="password" placeholder="password">
+		<button @click="login" type="submit">Login</button>
+	    </div>
+	</div>
+
+	<!-- Using v-for -->
+	<div id="app4">
+	    <div id="app4">
+		<ul>
+		    <li v-for="item in inventory">
+			{{ item.name }} - ${{ item.price }}
+		    </li>
+		</ul>
+	    </div>
+	</div>
+
+	<!-- Using computed properties -->
+	<div id="app5">
+	    <input type="number" v-model="x">
+	    result: {{ doubleX }}
+	</div>
+
+	<!-- Simple guessing game -->
+	<div id="app6">
+	    Guess a number between 1 and 10: <input type="number" v-model="userInput">
+	    <b>{{ message }}</b>
+	</div>
+	
+	<script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.js"></script>
+
+	<script>
+    var vm = new Vue({
+	el: '#vue-instance',
+	data: {
+	    name: ''
+	},
+	methods: {
+	    sayHello: function(){
+		alert('Hey there, '+this.name);
+	    }
+	}
+	 });
+
+	 var app2 = new Vue({
+	     el: '#app2',
+	     data: {
+		 isLoggedIn: false
+	     },
+	     methods:{
+		 login: function(){
+		     this.isLoggedIn = !this.isLoggedIn;
+		 }
+	     }
+	 });
+
+	 var app3 = new Vue({
+	     el: '#app3',
+	     data: {
+		 isLoggedIn: false
+	     },
+	     methods:{
+		 login: function(){
+		     this.isLoggedIn = !this.isLoggedIn;
+		 }
+	     }
+	 });
+
+	 var app4 = new Vue({
+	     el: '#app4',
+	     data: {
+		 inventory: [
+		     {name: 'MacBook Air', price: 1000},
+		     {name: 'MacBook Pro', price: 1800},
+		     {name: 'Lenovo W530', price: 1400},
+		     {name: 'Acer Aspire One', price: 300}
+		 ]
+	     }
+	 });
+
+	 var app5 = new Vue({
+	     el: '#app5',
+	     data:{
+		 x:1
+	     },
+	     computed: {
+		 doubleX: function(){
+		     return this.x*2;
+		 }
+	     }
+	 });
+
+	 var app6 = new Vue({
+	     el: '#app6',
+	     data: {
+		 userInput: 0,
+		 randomNumber: 5
+	     },
+	     methods:{
+		 getRandomNumber: function(min, max){
+		     return Math.floor(Math.random() * (max - min + 1)) + min;
+		 }
+	     },
+	     computed:{
+		 message: function(){
+		     if(this.userInput == this.randomNumber){
+			 this.randomNumber= this.getRandomNumber(1, 10);
+			 return 'You got it right!';
+		     } else{
+			 this.randomNumber = this.getRandomNumber(1, 10);
+			 return 'Try again!';
+		     }
+		 }
+	     }
+	 });
+	</script>
+    </body>
+</html>

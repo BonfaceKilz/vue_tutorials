@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>Simple blog</title>
+    </head>
+    <body>
+	<div id="app">
+	    <post :title="title" :author="author" :content="content"></post>
+	</div>
+	<template id="post-template">
+	    <h1>{{ title }}</h1>
+	    <h4>{{ author }}</h4>
+	    <p>{{ content }}</p>
+	</template>
+	
+    	<script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.js"></script>
+
+	<script>
+	 Vue.component('post', {
+	     template: '#post-template',
+	     props:['title', 'author', 'content']
+	 });
+	 
+	 var vm =new Vue({
+	     el: '#app',
+	     data: {
+		 author: 'Johnnie Walker',
+		 title: 'Aging your own whiskey',
+		 content: 'A bunch of steps and a whole lot of content'
+	     }
+	 });
+	</script>
+	
+    </body>
+</html>
