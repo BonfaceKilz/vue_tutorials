@@ -19,7 +19,7 @@ The following was done:
 Using the pipe notation and the flexible `Vue.filter()` constructor in using and making custom filters.
 
 ## Resources:
-1. (vue js- the Basics)[https://coligo.io/vuejs-the-basics/]
-2. (Practical intro to components in VueJs)[https://coligo.io/vuejs-components/]
-3. (Filter Basics)[https://coligo.io/vuejs-filters/]
+1. [vue js- the Basics](https://coligo.io/vuejs-the-basics/)
+2. [Practical intro to components in VueJs](https://coligo.io/vuejs-components/)
+3. [Filter Basics](https://coligo.io/vuejs-filters/)
    
